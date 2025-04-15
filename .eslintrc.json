@@ -1,7 +1,25 @@
 {
-  "extends": ["@rocketseat/eslint-config/react"],
-  "plugins": ["simple-import-sort"],
+  "extends": [
+    "plugin:react-native/all",
+    "standard",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react-native", "@typescript-eslint", "simple-import-sort"],
+  "parser": "@typescript-eslint/parser",
   "rules": {
-    "simple-import-sort/imports": "warn"
+    "simple-import-sort/imports": "warn",
+    "react-native/no-raw-text": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "tabWidth": 2,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "arrowParens": "always",
+        "semi": false,
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
