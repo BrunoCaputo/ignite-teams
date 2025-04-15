@@ -7,7 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "expo": "^52.0.0",
@@ -15,13 +17,22 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.9",
-    "react-native-web": "~0.19.13"
+    "react-native-web": "~0.19.13",
+    "styled-components": "^6.1.17"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@rocketseat/eslint-config": "^2.2.2",
     "@types/react": "~18.3.12",
     "@types/react-native": "~0.66.13",
     "babel-plugin-module-resolver": "^5.0.2",
+    "eslint": "^8.57.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^17.16.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "^3.5.3",
     "typescript": "^5.3.3"
   },
   "private": true
