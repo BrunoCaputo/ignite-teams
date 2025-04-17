@@ -9,6 +9,7 @@
   "rules": {
     "simple-import-sort/imports": "warn",
     "react-native/no-raw-text": "off",
+    "camelcase": "off",
     "prettier/prettier": [
       "error",
       {
