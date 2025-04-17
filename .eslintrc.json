@@ -10,6 +10,7 @@
     "simple-import-sort/imports": "warn",
     "react-native/no-raw-text": "off",
     "camelcase": "off",
+    "no-unused-vars": "off",
     "prettier/prettier": [
       "error",
       {
