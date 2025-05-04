@@ -4,7 +4,7 @@ import { AppError } from '@utils/AppError'
 import { GROUP_COLLECTION } from '../storageConfig'
 import { getAllGroups } from './getAllGroups'
 
-export async function groupCreate(newGroup: string) {
+export async function createGroup(newGroup: string) {
   try {
     const storedGroups = await getAllGroups()
 

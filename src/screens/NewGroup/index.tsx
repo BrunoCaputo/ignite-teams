@@ -6,7 +6,7 @@ import { Header } from '@components/Header'
 import { Highlight } from '@components/Highlight'
 import { Input } from '@components/Input'
 import { useNavigation } from '@react-navigation/native'
-import { groupCreate } from '@storage/group/groupCreate'
+import { createGroup } from '@storage/group/createGroup'
 import { AppError } from '@utils/AppError'
 
 import { Container, Content, Icon } from './styles'
@@ -22,7 +22,7 @@ export function NewGroup() {
         return Alert.alert('Novo Grupo', 'Informe o nome da turma.')
       }
 
-      await groupCreate(group.trim())
+      await createGroup(group.trim())
       navigation.navigate('players', { group })
     } catch (error) {
       if (error instanceof AppError) {
