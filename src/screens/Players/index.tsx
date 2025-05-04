@@ -10,6 +10,7 @@ import { useRoute } from '@react-navigation/native'
 import { addPlayerByGroup } from '@storage/player/addPlayerByGroup'
 import { getPlayersByGroupAndTeam } from '@storage/player/getPlayersByGroupAndTeam'
 import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO'
+import { removePlayerByGroup } from '@storage/player/removePlayerByGroup'
 import { AppError } from '@utils/AppError'
 import { useEffect, useRef, useState } from 'react'
 import { Alert, FlatList, TextInput } from 'react-native'
@@ -55,12 +56,12 @@ export function Players() {
 
       setNewPlayerName('')
 
-      await fetchPlayersByTeam()
+      fetchPlayersByTeam()
     } catch (error) {
       if (error instanceof AppError) {
         Alert.alert('Nova pessoa', error.message)
       } else {
-        console.log(error)
+        console.error(error)
         Alert.alert('Nova pessoa', 'Não foi possível adicionar.')
       }
     }
@@ -71,11 +72,22 @@ export function Players() {
       const playersByTeam = await getPlayersByGroupAndTeam(group, team)
       setPlayers(playersByTeam)
     } catch (error) {
-      console.log(error)
+      console.error(error)
       Alert.alert(
         'Pessoas',
         'Não foi possível carregar as pessoas do time selecionado.',
       )
+    }
+  }
+
+  async function handlePlayerRemove(playerName: string) {
+    try {
+      await removePlayerByGroup(playerName, group)
+
+      fetchPlayersByTeam()
+    } catch (error) {
+      console.error(error)
+      Alert.alert('Remover pessoa', 'Não foi possível remover essa pessoa.')
     }
   }
 
@@ -120,7 +132,10 @@ export function Players() {
         data={players}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
-          <PlayerCard name={item.name} onRemove={() => {}} />
+          <PlayerCard
+            name={item.name}
+            onRemove={() => handlePlayerRemove(item.name)}
+          />
         )}
         ListEmptyComponent={() => (
           <ListEmpty message="Não há pessoas nesse time" />
